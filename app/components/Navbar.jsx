@@ -10,7 +10,7 @@ import UseContextApi from "../Context/Context";
 export default function Navbar({ userData }) {
 	const [menuDrop, setMenuDrop] = useState(false);
 	const { setUser } = UseContextApi();
-
+	console.log(userData);
 	useEffect(() => {
 		setUser(userData?.user);
 	}, [setUser, userData]);

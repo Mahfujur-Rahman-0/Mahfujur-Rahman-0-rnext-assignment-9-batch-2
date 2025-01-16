@@ -4,7 +4,7 @@ import { getToken } from "next-auth/jwt";
 
 export async function middleware(request) {
 	const { pathname } = new URL(request.url);
-
+	console.log(pathname);
 	// Getting the token from the NextAuth JWT
 	const token = await getToken({
 		req: request,
