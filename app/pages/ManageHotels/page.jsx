@@ -35,7 +35,7 @@ export default function ManageHotels() {
 
 	useEffect(() => {
 		fetchData();
-	}, [fetchData]);
+	}, []);
 
 	const handelDelete = async (bb) => {
 		const res = await DeleteHandler(bb);
