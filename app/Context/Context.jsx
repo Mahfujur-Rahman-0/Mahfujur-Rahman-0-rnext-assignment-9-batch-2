@@ -14,7 +14,8 @@ export function ContextProvider({ children }) {
 		CheckOutDate: "",
 		GuestNum: 1,
 	});
-
+	const [search, setSearch] = useState();
+	const [recet, setRecet] = useState();
 	return (
 		<myContext.Provider
 			value={{
@@ -28,6 +29,10 @@ export function ContextProvider({ children }) {
 				setReserveData,
 				BookingHotelData,
 				setBookingHotelData,
+				search,
+				setSearch,
+				recet,
+				setRecet,
 			}}
 		>
 			{children}

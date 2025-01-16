@@ -176,13 +176,11 @@ const Boocking = async (
 		ZIP_code: BookIngData.get("ZIP_code") || "", // Default empty string
 	};
 
-	console.log(BOOKED); // Ensure all fields are populated correctly
-
 	// Send the data to MongoDB
 	try {
 		await new BookHotels(BOOKED).save();
 		console.log("Hotel updated successfully!");
-		return { message: "successfully" };
+		return { message: "successfully", response: BOOKED };
 	} catch (err) {
 		console.error("Error updating hotel:", err);
 		return { message: err };

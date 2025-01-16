@@ -9,7 +9,7 @@ import UseContextApi from "../Context/Context";
 
 export default function Navbar({ userData }) {
 	const [menuDrop, setMenuDrop] = useState(false);
-	const { setUser } = UseContextApi();
+	const { setUser, search, setSearch } = UseContextApi();
 
 	useEffect(() => {
 		setUser(userData?.user);
@@ -45,6 +45,8 @@ export default function Navbar({ userData }) {
 			<div className="row-start-2 col-span-2 border-0 md:border flex shadow-sm hover:shadow-md transition-all md:rounded-full items-center px-2">
 				<div className="grid md:grid-cols-3 lg:grid-cols-7 gap-4 divide-x py-2 md:px-2 flex-grow">
 					<input
+						value={search}
+						onChange={(e) => setSearch(e.target.value)}
 						type="text"
 						placeholder="Where to?"
 						className="px-3 w-full bg-transparent focus:outline-none lg:col-span-3 placeholder:text-sm"

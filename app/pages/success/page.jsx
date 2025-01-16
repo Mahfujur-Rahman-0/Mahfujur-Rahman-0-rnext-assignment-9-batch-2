@@ -1,6 +1,10 @@
+"use client";
+import UseContextApi from "@/app/Context/Context";
 import Image from "next/image";
 
 export default function success() {
+	const { recet, setRecet } = UseContextApi();
+	console.log(recet);
 	return (
 		<div className="bg-gray-50">
 			<div className="max-w-3xl mx-auto p-6">
@@ -21,12 +25,14 @@ export default function success() {
 						<Image
 							width={300}
 							height={300}
-							src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1980&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+							src={recet?.thumbNailUrl}
 							alt="Property"
 							className="w-32 h-32 rounded-lg object-cover"
 						/>
 						<div>
-							<h2 className="text-2xl font-semibold mb-2">Sea View Room</h2>
+							<h2 className="text-2xl font-semibold mb-2">
+								{recet?.Hotel_Name}
+							</h2>
 							<div className="flex items-center mb-2">
 								<i className="fas fa-star text-sm mr-1"></i>
 								<span className="text-sm">4.6 (500+ reviews)</span>
@@ -44,15 +50,21 @@ export default function success() {
 							<div className="space-y-3">
 								<div className="flex justify-between">
 									<span className="text-zinc-600 text-sm">Check-in</span>
-									<span className="text-zinc-500 text-sm">Jan 3, 2025</span>
+									<span className="text-zinc-500 text-sm">
+										{recet?.check_In_Date}
+									</span>
 								</div>
 								<div className="flex justify-between">
 									<span className="text-zinc-600 text-sm">Check-out</span>
-									<span className="text-zinc-500 text-sm">Jan 8, 2025</span>
+									<span className="text-zinc-500 text-sm">
+										{recet?.check_Out_Date}
+									</span>
 								</div>
 								<div className="flex justify-between">
 									<span className="text-zinc-600 text-sm">Guests</span>
-									<span className="text-zinc-500 text-sm">1 guest</span>
+									<span className="text-zinc-500 text-sm">
+										{recet?.guests} guest
+									</span>
 								</div>
 							</div>
 						</div>
@@ -62,11 +74,11 @@ export default function success() {
 							<div className="space-y-3">
 								<div className="flex justify-between">
 									<span className="text-zinc-600">Total amount paid</span>
-									<span className="font-semibold">$364.20</span>
+									<span className="font-semibold">${recet?.Total}</span>
 								</div>
 								<div className="flex justify-between text-sm">
 									<span className="text-zinc-600 text-sm">Booking ID</span>
-									<span>BOOK123456</span>
+									<span>{recet?.id}</span>
 								</div>
 							</div>
 						</div>

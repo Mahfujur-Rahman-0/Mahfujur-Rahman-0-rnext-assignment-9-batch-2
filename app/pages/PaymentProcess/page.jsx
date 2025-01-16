@@ -20,6 +20,8 @@ export default function PaymentProcess() {
 		BookingHotelData,
 		setBookingHotelData,
 		user,
+
+		setRecet,
 	} = UseContextApi();
 
 	const [checkInDate, setCheckInDate] = useState(ReserveData.CheckinDate);
@@ -91,11 +93,12 @@ export default function PaymentProcess() {
 				ServiceFee,
 				CleaningFee,
 				guests,
-				1
+				0
 			);
 
 			await setBookingHotelData("");
 			if (res.message == "successfully") {
+				await setRecet(res.response);
 				router.push("/pages/success");
 			}
 		} catch (err) {
