@@ -4,8 +4,10 @@ import { useState } from "react";
 import submitForm from "../api/formhandeler";
 import { SignInBTN } from "./GoogleBTN";
 import ProfileUploadImage from "./ProfileImg";
+import Eye from "./Eye/EyeTogoller";
 
 export default function SignUp() {
+	const [see, hide] = useState(true);
 	const [err, setErr] = useState();
 	const handleBackToHome = () => {
 		window.location.href = "/";
@@ -103,14 +105,19 @@ export default function SignUp() {
 							<p className={`${!err && "hidden"} text-red-600 text-center`}>
 								{err && err}
 							</p>
-							<input
-								type="password"
-								name="password"
-								placeholder="Password"
-								className="w-full border border-gray-300 rounded-full px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary"
-								required
-							/>
 
+							<div className="relative">
+								<input
+									type={`${see ? "password" : "text"}`}
+									name="password"
+									placeholder="Password"
+									className="w-full border border-gray-300 rounded-full px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary"
+									required
+								/>
+								<div className="absolute right-10 top-1/2">
+									<Eye see={see} hide={hide} />
+								</div>
+							</div>
 							<ProfileUploadImage />
 							<button
 								type="submit"

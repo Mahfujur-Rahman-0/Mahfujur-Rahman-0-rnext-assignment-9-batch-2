@@ -1,11 +1,15 @@
 "use client";
 
+import { useState } from "react";
+import Eye from "./Eye/EyeTogoller";
 import { LogInAuthBtn, SignInBTN } from "./GoogleBTN";
 
 export default function LogIn() {
+	const [see, hide] = useState(true);
 	const handleBackToHome = () => {
 		window.location.href = "/";
 	};
+	console.log(see);
 
 	const handelLogIn = async (e) => {
 		try {
@@ -101,12 +105,17 @@ export default function LogIn() {
 									placeholder="Email"
 									className="w-full border border-gray-300 rounded-full px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary"
 								/>
-								<input
-									name="password"
-									type="password"
-									placeholder="Password"
-									className="w-full border border-gray-300 rounded-full px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary"
-								/>
+								<div className="relative">
+									<input
+										name="password"
+										type={`${see ? "password" : "text"}`}
+										placeholder="Password"
+										className="w-full border border-gray-300 rounded-full px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary"
+									/>
+									<div className="absolute right-10 top-1/2">
+										<Eye see={see} hide={hide} />
+									</div>
+								</div>
 
 								<button
 									type="submit"

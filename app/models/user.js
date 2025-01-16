@@ -141,6 +141,7 @@ export { EditedHotels };
 //Used for Booking [start]
 
 const BookHotelsSchema = new mongoose.Schema({
+	thumbNailUrl: { type: mongoose.Schema.Types.Mixed },
 	name: { type: mongoose.Schema.Types.Mixed },
 	email: {
 		type: mongoose.Schema.Types.Mixed,
@@ -177,3 +178,21 @@ const BookHotels =
 export { BookHotels };
 
 //Used for Booking [end]
+
+//Used for getting new data from data-base to render at the home screen [start]
+const BOOKED_LIST = new mongoose.Schema(
+	{
+		name: { type: String, required: true },
+		value: { type: Number, required: true },
+	},
+	{
+		collection: "booking",
+	}
+);
+
+const BookData =
+	mongoose.models.BookData || mongoose.model("BookData", BOOKED_LIST);
+
+export { BookData };
+
+//Used for getting new data from data-base to render at the home screen [End]

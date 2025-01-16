@@ -21,6 +21,7 @@ export default function PaymentProcess() {
 		setBookingHotelData,
 		user,
 	} = UseContextApi();
+
 	const [checkInDate, setCheckInDate] = useState(ReserveData.CheckinDate);
 	const [checkOutDate, setCheckOutDate] = useState(ReserveData.CheckOutDate);
 	const [guests, setGuests] = useState(ReserveData.GuestNum);

@@ -1,6 +1,6 @@
 "use server";
 import connectMongo from "@/dbConnect/connectDB";
-import User, { BookHotels, Data, Hotels } from "../models/user";
+import User, { BookData, BookHotels, Data, Hotels } from "../models/user";
 
 export default async function submitForm(e) {
 	const formData = {
@@ -152,6 +152,7 @@ const Boocking = async (
 ) => {
 	await connectMongo();
 	const BOOKED = {
+		thumbNailUrl: BookingHotelData?.thumbNailUrl,
 		name: userdata?.name.toString(),
 		email: userdata?.email.toString(),
 		id: hotelId,
@@ -191,3 +192,23 @@ const Boocking = async (
 export { Boocking };
 
 //booking data [end]
+
+//uset for finding booking data by maching user name and email [start]
+
+export async function getBookingData() {
+	try {
+		await connectMongo();
+		const res = await BookData.find();
+
+		const BookingList = res.map((doc) => ({
+			...doc.toObject(),
+			_id: doc._id.toString(),
+		}));
+
+		return { status: 200, message: "Data fetched successfully!", BookingList };
+	} catch (error) {
+		return { status: 500, error: "Data not found" };
+	}
+}
+
+//uset for finding booking data by maching user name and email [end]

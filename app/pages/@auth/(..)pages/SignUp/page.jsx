@@ -1,6 +1,7 @@
 "use client";
 
 import submitForm from "@/app/api/formhandeler";
+import Eye from "@/app/components/Eye/EyeTogoller";
 import { SignInBTN } from "@/app/components/GoogleBTN";
 import ProfileUploadImage from "@/app/components/ProfileImg";
 import Link from "next/link";
@@ -8,6 +9,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function SignUpr() {
+	const [see, hide] = useState(true);
 	const [err, setErr] = useState();
 
 	const handleBackToHome = () => {
@@ -114,12 +116,18 @@ export default function SignUpr() {
 								<p className={`${!err && "hidden"} text-red-600 text-center`}>
 									{err && err}
 								</p>
-								<input
-									type="password"
-									name="password"
-									placeholder="Password"
-									className="w-full border border-gray-300 rounded-full px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary"
-								/>
+
+								<div className="relative">
+									<input
+										type={`${see ? "password" : "text"}`}
+										name="password"
+										placeholder="Password"
+										className="w-full border border-gray-300 rounded-full px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary"
+									/>
+									<div className="absolute right-10 top-1/2">
+										<Eye see={see} hide={hide} />
+									</div>
+								</div>
 								<ProfileUploadImage />
 								<button
 									disabled={submitForm ? false : true}
